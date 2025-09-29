@@ -1,0 +1,39 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Build & Test
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - 'DocsBr/DocsBr.csproj'
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - 'DocsBr/DocsBr.csproj'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Install .NET Framework 4.5.2 Developer Pack
+      run: choco install netfx-4.5.2-devpack -y
+      shell: pwsh
+      
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Run tests
+      run: dotnet test --no-restore --verbosity normal
+
+    - name: Build and pack
+      run: dotnet build DocsBr/DocsBr.csproj --no-restore
