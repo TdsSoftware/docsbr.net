@@ -37,7 +37,8 @@ namespace DocsBr.Validation.IE
 
             DigitoVerificador digitoVerificador = new DigitoVerificador(number)
                                                     .ComMultiplicadoresDeAte(2, 9)
-                                                    .Substituindo("0", 10, 11);
+                                                    .Substituindo("0", 10)
+                                                    .Substituindo("1", 11);
             return digitoVerificador.CalculaDigito() == this.inscEstadual.Substring(this.inscEstadual.Length - 1, 1);
         }
     }
