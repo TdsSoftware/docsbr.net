@@ -59,7 +59,9 @@ namespace DocsBr.Validation.IE
             number = String.Concat(number, "0");
 
             DigitoVerificador digitoVerificador = 
-                new DigitoVerificador(number).ComMultiplicadoresDeAte(1, 9).Substituindo("0", 10, 11);
+                new DigitoVerificador(number).ComMultiplicadoresDeAte(1, 9)
+                .Substituindo("0", 10)
+                .Substituindo("1", 11);
             return digitoVerificador.CalculaDigito() == this.inscEstadual.Substring(this.inscEstadual.Length - 1, 1);
         }
     }
