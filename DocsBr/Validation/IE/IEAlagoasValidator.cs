@@ -15,9 +15,15 @@ namespace DocsBr.Validation.IE
 
         public bool IsValid()
         {
+            if (!IsSizeValid()) return false;
             if (!IsCompanyTypeValid()) return false;
             if (!IsFirstDigitsValid()) return false;
             return HasValidCheckDigits();
+        }
+
+        private bool IsSizeValid()
+        {
+            return this.inscEstadual.Length == 9;
         }
 
         private bool IsCompanyTypeValid()
