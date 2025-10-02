@@ -23,7 +23,11 @@ namespace DocsBr.Validation.IE
         public bool IsValid()
         {
             if (!IsSizeValid()) return false;
-            if (!HasValid3rdAnd4thDigits()) return false;
+
+            if (this.inscEstadual.Length == 11) { 
+                if (!HasValid3rdAnd4thDigits()) return false;
+            }
+
             return HasValidCheckDigits();
         }
 
