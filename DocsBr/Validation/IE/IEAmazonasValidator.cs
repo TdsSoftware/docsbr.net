@@ -59,11 +59,20 @@ namespace DocsBr.Validation.IE
 
         private bool HasValidCheckDigits()
         {
-            string number = this.inscEstadual.Substring(0, this.inscEstadual.Length - 1);
+            var number = this.inscEstadual.Substring(0, this.inscEstadual.Length - 1);
+            var dv = this.inscEstadual.Substring(this.inscEstadual.Length - 1, 1);
 
-            DigitoVerificador digitoVerificador = new DigitoVerificador(number)
-                                                        .Substituindo("0", 1, 10, 11);
-            return digitoVerificador.CalculaDigito() == this.inscEstadual.Substring(this.inscEstadual.Length - 1, 1);
+            var resto = new DigitoVerificador(number)
+                .SemComplementarDoModulo()
+                .CalculaDigito();
+
+            Console.WriteLine(resto);
+
+            if (resto == "0" || resto == "1") { 
+                return dv == "0";
+            }
+
+            return new DigitoVerificador(number).CalculaDigito() == dv;
         }
     }
 }
