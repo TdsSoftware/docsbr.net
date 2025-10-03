@@ -66,8 +66,6 @@ namespace DocsBr.Validation.IE
                 .SemComplementarDoModulo()
                 .CalculaDigito();
 
-            Console.WriteLine(resto);
-
             if (resto == "0" || resto == "1") { 
                 return dv == "0";
             }
