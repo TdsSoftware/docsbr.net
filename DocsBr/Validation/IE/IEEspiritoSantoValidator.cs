@@ -16,7 +16,9 @@ namespace DocsBr.Validation.IE
 
         public IEEspiritoSantoValidator(string inscEstadual)
         {
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString();
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(9)
+                .ToString();
         }
 
         public bool IsValid()

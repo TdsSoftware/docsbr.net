@@ -17,11 +17,19 @@ namespace DocsBr.Validation.IE
 
         public IESantaCatarinaValidator(string inscEstadual)
         {
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString();
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(9)
+                .ToString();
+        }
+
+        private bool IsSizeValid()
+        {
+            return this.inscEstadual.Length == 9;
         }
 
         public bool IsValid()
         {
+            if (!IsSizeValid()) return false;
             return HasValidCheckDigits();
         }
 

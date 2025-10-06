@@ -17,7 +17,9 @@ namespace DocsBr.Validation.IE
 
         public IERondoniaValidator(string inscEstadual)
         {
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString();
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(14)
+                .ToString();
         }
 
         public bool IsValid()

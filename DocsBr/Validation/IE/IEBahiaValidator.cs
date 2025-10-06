@@ -19,7 +19,9 @@ namespace DocsBr.Validation.IE
 
         public IEBahiaValidator(string inscEstadual)
         {
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString(); 
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(8)
+                .ToString(); 
         }
 
         public bool IsValid()

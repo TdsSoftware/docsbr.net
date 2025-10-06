@@ -17,7 +17,9 @@ namespace DocsBr.Validation.IE
 
         public IEParaValidator(string inscEstadual)
         {
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString();
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(9)
+                .ToString();
         }
 
         public bool IsValid()

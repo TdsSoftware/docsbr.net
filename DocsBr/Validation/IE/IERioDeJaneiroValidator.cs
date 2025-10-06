@@ -17,7 +17,9 @@ namespace DocsBr.Validation.IE
 
         public IERioDeJaneiroValidator(string inscEstadual)
         {
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString();
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(8)
+                .ToString();
         }
 
         public bool IsValid()

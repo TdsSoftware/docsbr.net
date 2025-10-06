@@ -19,7 +19,9 @@ namespace DocsBr.Validation.IE
         public IESaoPauloValidator(string inscEstadual)
         {
             this.isProdutorRural = (inscEstadual.Substring(0, 1).ToUpper() == "P");
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString();
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(12)
+                .ToString();
         }
 
         public bool IsValid()

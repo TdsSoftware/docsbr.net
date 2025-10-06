@@ -16,7 +16,9 @@ namespace DocsBr.Validation.IE
 
         public IEAcreValidator(string inscEstadual)
         {
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString(); 
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(13)
+                .ToString(); 
         }
 
         public bool IsValid()

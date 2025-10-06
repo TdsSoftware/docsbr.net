@@ -17,11 +17,19 @@ namespace DocsBr.Validation.IE
 
         public IEMatoGrossoValidator(string inscEstadual)
         {
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString();
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(11)
+                .ToString();
+        }
+
+        private bool IsSizeValid()
+        {
+            return this.inscEstadual.Length == 11;
         }
 
         public bool IsValid()
         {
+            if (!IsSizeValid()) return false;
             return HasValidCheckDigits();
         }
 

@@ -10,7 +10,9 @@ namespace DocsBr.Validation.IE
 
         public IEAlagoasValidator(string inscEstadual)
         {
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString(); 
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(9)
+                .ToString(); 
         }
 
         public bool IsValid()

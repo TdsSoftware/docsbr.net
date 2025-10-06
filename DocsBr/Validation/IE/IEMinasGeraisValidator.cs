@@ -17,11 +17,19 @@ namespace DocsBr.Validation.IE
 
         public IEMinasGeraisValidator(string inscEstadual)
         {
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString();
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(13)
+                .ToString();
+        }
+
+        private bool IsSizeValid()
+        {
+            return this.inscEstadual.Length == 13;
         }
 
         public bool IsValid()
         {
+            if (!IsSizeValid()) return false;
             return HasValidCheckDigits();
         }
 

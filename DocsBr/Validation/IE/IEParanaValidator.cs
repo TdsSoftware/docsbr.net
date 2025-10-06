@@ -17,7 +17,9 @@ namespace DocsBr.Validation.IE
 
         public IEParanaValidator(string inscEstadual)
         {
-            this.inscEstadual = new OnlyNumbers(inscEstadual).ToString();
+            this.inscEstadual = new OnlyNumbers(inscEstadual)
+                .WithZerosToTheLeft(10)
+                .ToString();
         }
 
         public bool IsValid()

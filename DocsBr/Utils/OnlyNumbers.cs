@@ -8,20 +8,34 @@ namespace DocsBr.Utils
 
         public OnlyNumbers(string value)
         {
-            this.value = value;
-        }
-
-        public override string ToString()
-        {
             string onlyNumber = "";
-            foreach (char s in this.value)
+            foreach (char s in value)
             {
                 if (Char.IsDigit(s))
                 {
                     onlyNumber += s;
                 }
             }
-            return onlyNumber.Trim();
+            this.value = onlyNumber.Trim();
+        }
+
+        public OnlyNumbers WithZerosToTheLeft(int minSize)
+        {
+            if (this.value.Length >= minSize)
+                return this;
+
+            // Calcula quantos zeros precisam ser adicionados
+            int zerosNeeded = minSize - this.value.Length;
+
+            // Cria uma nova string com zeros à esquerda seguidos pelo valor original
+            this.value = new string('0', zerosNeeded) + this.value;
+
+            return this;
+        }
+
+        public override string ToString()
+        {
+            return this.value;
         }
     }
 }
