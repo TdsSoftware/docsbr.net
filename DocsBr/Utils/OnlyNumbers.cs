@@ -21,6 +21,9 @@ namespace DocsBr.Utils
 
         public OnlyNumbers WithZerosToTheLeft(int minSize)
         {
+            if (HasAnyNonZero() == false) 
+                return this;
+
             if (this.value.Length >= minSize)
                 return this;
 
@@ -36,6 +39,16 @@ namespace DocsBr.Utils
         public override string ToString()
         {
             return this.value;
+        }
+
+        private bool HasAnyNonZero()
+        {
+            foreach (char s in value)
+            {
+                if (s != '0') return true;
+            }
+
+            return false;
         }
     }
 }
